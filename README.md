@@ -59,5 +59,6 @@ $ cd Bango_frontend/
 $ npm install
 $ npm run dev
 $ npm install --save vuex
+$ npm install --save axios
 ```
 
