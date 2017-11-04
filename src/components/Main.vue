@@ -1,17 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <span>{{ message }}</span><br/>
-    <!--<button v-on:click="getAllData">Get AllData</button>
-      <button v-on:click="getData1">Get data1</button><br>-->
-    <input type="text" name="searchText" size="30" maxlength="20" v-model="searchInputText"><br>
-    <input type="button" value="検索" v-on:click="searchButtonClick()">
-
+    <input type="text" name="searchText" size="30" maxlength="20" v-model="searchInputText">
+    <input type="button" value="検索" v-on:click="searchButtonClick()"><br>
+    <span>{{ message }}</span><br>
     <div id="recipe_list">
       <table id="recipe_table">
       <template v-for="(recipe, index) in searchResult">
         <tr class="recipe_row" v-bind:key="index">
           <td class="recipe">{{ recipe.name }}</td>
+          <td><a v-bind:href="recipe.url" target="_blank">リンク</a></td>
           <td>{{index}}</td>
         </tr>
       </template>
@@ -29,7 +27,7 @@ export default {
   data: function () {
     return {
       msg: 'レシピ検索',
-      message: 'Hello',
+      message: '',
       searchInputText: ''
     }
   },
@@ -39,12 +37,6 @@ export default {
       'setSearchText',
       'search'
     ]),
-    getAllData: function () {
-      this.message = '取得中'
-    },
-    getData1: function () {
-      this.message = this.all[0].recipe_name
-    },
     searchButtonClick: function () {
       this.setSearchText(this.searchInputText)
       this.search()
@@ -58,7 +50,6 @@ export default {
     ])
   },
   created () {
-    this.message = '取得中'
     this.load()
   }
 }
