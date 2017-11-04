@@ -3,19 +3,19 @@
   "name": "Kato ei",
   "recipe" : [
     {
-    "name" : "豚バラうまだれ",
-    "foodstuff": ["豚バラ", "キャベツ"],
-    "recipe_url": "https://github.com/eiKatou/"
+      "name" : "豚バラうまだれ",
+      "foodstuff": ["豚バラ", "キャベツ"],
+      "url": "https://github.com/eiKatou/"
     },
-   {
-    "name" : "きゅうりとささ身の塩だれ",
-    "foodstuff": ["鶏ささ身", "きゅうり"],
-    "recipe_url": "https://github.com/eiKatou/"
+    {
+      "name" : "きゅうりとささ身の塩だれ",
+      "foodstuff": ["鶏ささ身", "きゅうり"],
+      "url": "https://github.com/eiKatou/"
     },
     {
       "name" : "豚丼",
       "foodstuff": ["豚肉うすぎり", "紅生姜"],
-      "recipe_url": "https://github.com/eiKatou/"
+      "url": "https://github.com/eiKatou/"
       }
   ]
 }
