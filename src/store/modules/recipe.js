@@ -36,13 +36,27 @@ const actions = {
     commit(types.RECEIVE_SETSEARCHTEXT, text)
   },
   search ({commit}) {
-    // 検索する
-    var result = state.all[0]
+    console.log('search : ' + state.searchText)
+    var result = []
+    for (var recipe of state.all) {
+      if (containsFoodstuff(recipe.foodstuff, state.searchText)) {
+        result.push(recipe)
+      }
+    }
     commit(types.RECEIVE_SETSEARCHRESULT, result)
   },
   addNew ({commit}, entity) {
     commit(types.RECEIVE_NEWRECIPE, entity)
   }
+}
+
+function containsFoodstuff (foodstuff, text) {
+  for (var f of foodstuff) {
+    if (f.indexOf(text) !== -1) {
+      return true
+    }
+  }
+  return false
 }
 
 // mutations
@@ -53,7 +67,8 @@ const mutations = {
   [types.RECEIVE_SETSEARCHTEXT] (state, text) {
     state.searchText = text
   },
-  [types.RECEIVE_SETSEARCHRESULT] (state, {results}) {
+  [types.RECEIVE_SETSEARCHRESULT] (state, results) {
+    console.log(results)
     state.searchResult = results
   },
   [types.RECEIVE_NEWRECIPE] (state, newEntity) {
