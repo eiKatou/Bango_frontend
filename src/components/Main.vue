@@ -9,10 +9,10 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'HelloWorld',
+  name: 'Main',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: 'レシピ検索',
       message: 'Hello'
     }
   },
