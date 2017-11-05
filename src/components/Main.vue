@@ -1,20 +1,24 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <div id="searchBox">
     <input type="text" name="searchText" size="30" maxlength="20" v-model="searchInputText">
-    <input type="button" value="検索" v-on:click="searchButtonClick()"><br>
-    <span>{{ message }}</span><br>
-    <div id="recipe_list">
-      <table id="recipe_table">
-      <template v-for="(recipe, index) in searchResult">
-        <tr class="recipe_row" v-bind:key="index">
-          <td class="recipe">{{ recipe.name }}</td>
-          <td><a v-bind:href="recipe.url" target="_blank">リンク</a></td>
-          <td>{{index}}</td>
-        </tr>
-      </template>
-      </table>
+    <input type="button" value="検索" v-on:click="searchButtonClick()">
     </div>
+    <span>{{ message }}</span><br>
+
+    <!-- レシピ検索結果 -->
+    <template v-for="(recipe, index) in searchResult">
+      <div id="recipe" v-bind:key="index">
+        <h3>{{ recipe.name }}</h3>
+        <p><a v-bind:href="recipe.url" target="_blank">リンク</a></p>
+        <div id="foodstuff">
+          <ul>
+            <li v-for="f in recipe.foodstuff" v-bind:key="f">{{ f }}</li>
+          </ul>
+        </div>
+      </div>
+    </template>
 
   </div>
 </template>
@@ -62,18 +66,32 @@ h1, h2 {
 }
 
 ul {
-  list-style-type: none;
-  padding: 0;
+  list-style-type: disc;
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 a {
   color: #42b983;
 }
+
+#searchBox {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+#recipe {
+  text-align: left;
+  margin: auto;
+  width: 60%;
+}
+
+#foodstuff {
+  text-align: left;
+}
+
 #recipe_list {
   width: 40%;
   margin: auto;
