@@ -11,7 +11,8 @@
     <template v-for="(recipe, index) in searchResult">
       <div id="recipe" v-bind:key="index">
         <h3>{{ recipe.name }}</h3>
-        <p><a v-bind:href="recipe.url" target="_blank">リンク</a></p>
+        <p>
+          <a v-bind:href="recipe.url" target="_blank"><img v-bind:src="recipe.thumnail"></img></a></p>
         <div id="foodstuff">
           <ul>
             <li v-for="f in recipe.foodstuff" v-bind:key="f">{{ f }}</li>
@@ -63,6 +64,16 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+
+h3 {
+  border-bottom: solid 2px black;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+  margin-left: 10px;
 }
 
 ul {

@@ -5,17 +5,20 @@
     {
       "name" : "豚バラうまだれ",
       "foodstuff": ["豚バラ", "キャベツ"],
-      "url": "https://github.com/eiKatou/"
+      "thumnail": "/static/data/r02.jpg",
+      "url": "https://drive.google.com/file/d/0B0jWT3LBRDImbnBVRE5fWklXNUE/view?usp=drivesdk"
     },
     {
       "name" : "きゅうりとささ身の塩だれ",
       "foodstuff": ["鶏ささ身", "きゅうり"],
-      "url": "https://github.com/eiKatou/"
+      "thumnail": "/static/data/r01.jpg",
+      "url": "https://drive.google.com/file/d/0B0jWT3LBRDImZWxNbDJXbFotb3c/view?usp=drivesdk"
     },
     {
       "name" : "豚丼",
       "foodstuff": ["豚肉うすぎり", "紅生姜"],
-      "url": "https://github.com/eiKatou/"
+      "thumnail": "/static/data/r02.jpg",
+      "url": "https://drive.google.com/file/d/0B0jWT3LBRDImbnBVRE5fWklXNUE/view?usp=drivesdk"
       }
   ]
 }
