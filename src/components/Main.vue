@@ -1,9 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+
+    <!-- 検索ボックス -->
     <div id="searchBox">
-    <input type="text" name="searchText" size="30" maxlength="20" v-model="searchInputText">
-    <input type="button" value="検索" v-on:click="searchButtonClick()">
+      <input type="text" name="searchText" size="20" maxlength="10" v-model="searchInputText">
+      <input type="button" value="検索" v-on:click="searchButtonClick()">
     </div>
     <span>{{ message }}</span><br>
 
@@ -90,13 +92,13 @@ a {
 #searchBox {
   text-align: center;
   margin: auto;
-  width: 100%;
+  width: 80%;
 }
 
 #recipe {
   text-align: left;
   margin: auto;
-  width: 60%;
+  width: 80%;
 }
 
 #foodstuff {

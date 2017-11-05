@@ -62,3 +62,5 @@ $ npm install --save vuex
 $ npm install --save axios
 ```
 
+# 素材
+いらすとや
