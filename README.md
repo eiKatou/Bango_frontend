@@ -60,7 +60,12 @@ $ npm install
 $ npm run dev
 $ npm install --save vuex
 $ npm install --save axios
+$ npm install --save amazon-cognito-identity-js
 ```
+
+# AWS Cognito
+- [aws/aws-sdk-js: AWS SDK for JavaScript in the browser and Node.js](https://github.com/aws/aws-sdk-js)
+- [aws/amazon-cognito-identity-js](https://github.com/aws/amazon-cognito-identity-js)
 
 # 素材
 いらすとや

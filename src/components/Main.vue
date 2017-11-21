@@ -1,20 +1,21 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div>
+    <img src="../assets/logo.jpg" style="zoom:0.3;">
 
+    <h1>{{ msg }}</h1>
     <!-- 検索ボックス -->
     <div id="searchBox">
       <input type="text" name="searchText" size="20" maxlength="10" v-model="searchInputText">
-      <input type="button" value="検索" v-on:click="searchButtonClick()">
+      <input type="button" value="検索" v-bind:disabled="!loaded" v-on:click="searchButtonClick()">
     </div>
-    <span>{{ message }}</span><br>
+    <span v-show="!isLogined">{{ message }}</span><br>
 
     <!-- レシピ検索結果 -->
-    <template v-for="(recipe, index) in searchResult">
+    <template v-for="(recipe, index) in this.searchResult">
       <div id="recipe" v-bind:key="index">
         <h3>{{ recipe.name }}</h3>
         <p>
-          <a v-bind:href="recipe.url" target="_blank"><img v-bind:src="recipe.thumnail"></img></a></p>
+          <a v-bind:href="recipe.url" target="_blank"><img v-bind:src="recipe.thumnailImage"></img></a></p>
         <div id="foodstuff">
           <ul>
             <li v-for="f in recipe.foodstuff" v-bind:key="f">{{ f }}</li>
@@ -28,37 +29,69 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import UserData from '../utils/UserData'
 
 export default {
-  name: 'Main',
+  name: 'main',
   data: function () {
     return {
       msg: 'レシピ検索',
-      message: '',
+      message: 'ログインしてね！',
+      searchResult: [],
       searchInputText: ''
     }
   },
   methods: {
-    ...mapActions([
-      'load',
-      'setSearchText',
-      'search'
-    ]),
+    ...mapActions('recipe', ['load']),
+    ...mapActions('auth', ['getSession']),
     searchButtonClick: function () {
-      this.setSearchText(this.searchInputText)
-      this.search()
+      console.log('searchButtonClick:' + this.searchInputText)
+      this.searchResult = this.find(this.searchInputText)
+      var that = this
+
+      for (let i = 0; i < this.searchResult.length; i++) {
+        let recipe = this.searchResult[i]
+        that.searchResult[i].thumnailImage = undefined
+        UserData.getRecipeThumbnail(recipe.thumnail)
+          .then(function (data) {
+            that.searchResult[i].thumnailImage = 'data:image/jpeg;base64,' + encode(data.Body)
+            that.$set(that.searchResult, i, that.searchResult[i])
+          }).catch(function (err) {
+            console.log(err)
+          })
+      }
     }
   },
   computed: {
-    ...mapGetters([
-      'all',
-      'searchText',
-      'searchResult'
-    ])
+    ...mapGetters('recipe', ['all', 'find', 'loaded']),
+    ...mapGetters('auth', ['user', 'jwtToken', 'isLogined']),
+    loginMsg: {
+      get () {
+        if (this.isLogined) {
+          return 'ログイン済'
+        } else {
+          return '未ログイン'
+        }
+      }
+    }
+  },
+  mounted () {
+    this.getSession()
+      .then((attributes) => {
+        this.load(this.jwtToken) // ログイン済みの時のみデータを取得する
+      }).catch((err) => {
+        console.log('no session, ' + err)
+      })
   },
   created () {
-    this.load()
   }
+}
+function encode (data) {
+  var str = data.reduce(
+    function (a, b) {
+      return a + String.fromCharCode(b)
+    }, '')
+  return btoa(str).replace(/.{76}(?=.)/g, '$&\n')
 }
 </script>
 

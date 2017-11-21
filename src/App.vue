@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.jpg" style="zoom:0.5;">
+    <headerItem></headerItem>
     <router-view/>
   </div>
 </template>
 
 <script>
+import headerItem from './components/HeaderItem'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    headerItem
+  }
 }
 </script>
 
