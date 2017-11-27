@@ -1,3 +1,4 @@
+import axios from 'axios'
 import * as types from '../mutation-types'
 import AwsUtil from '../../utils/AwsUtil'
 import UserData from '../../utils/UserData'
@@ -48,6 +49,14 @@ const recipe = {
           console.log('Error:getRecipe')
           console.log(err)
         })
+      let API_URL = 'https://3nqaj8sj17.execute-api.ap-northeast-1.amazonaws.com/test/greet'
+      axios.defaults.headers.common['Authorization'] = jwtToken
+      axios.get(API_URL)
+      .then(res => {
+        console.log(res.status, res.statusText, res.data)
+      }).catch(err => {
+        console.error(err)
+      })
     },
     addNew ({commit}, entity) {
       commit(types.RECEIVE_NEWRECIPE, entity)
