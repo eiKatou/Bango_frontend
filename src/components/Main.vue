@@ -15,7 +15,8 @@
       <div id="recipe" v-bind:key="index">
         <h3>{{ recipe.name }}</h3>
         <p>
-          <a v-bind:href="recipe.url" target="_blank"><img v-bind:src="recipe.thumnailImage"></img></a></p>
+          <img v-bind:src="recipe.thumbnailImage"></img>
+        </p>
         <div id="foodstuff">
           <ul>
             <li v-for="f in recipe.foodstuff" v-bind:key="f">{{ f }}</li>
@@ -51,10 +52,10 @@ export default {
 
       for (let i = 0; i < this.searchResult.length; i++) {
         let recipe = this.searchResult[i]
-        that.searchResult[i].thumnailImage = undefined
-        UserData.getRecipeThumbnail(recipe.thumnail)
+        that.searchResult[i].thumbnailImage = undefined
+        UserData.getRecipeThumbnail(recipe.thumbnail)
           .then(function (data) {
-            that.searchResult[i].thumnailImage = 'data:image/jpeg;base64,' + encode(data.Body)
+            that.searchResult[i].thumbnailImage = 'data:image/jpeg;base64,' + encode(data.Body)
             that.$set(that.searchResult, i, that.searchResult[i])
           }).catch(function (err) {
             console.log(err)

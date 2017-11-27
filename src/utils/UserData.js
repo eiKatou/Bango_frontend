@@ -5,7 +5,7 @@ class UserData {
     return new Promise((resolve, reject) => {
       var params = {
         Bucket: 'eikatou.bango.data',
-        Key: 'private/' + config.credentials.identityId + '/test.json'
+        Key: 'private/' + config.credentials.identityId + '/recipe.json'
       }
       var s3 = new S3()
       s3.getObject(params, function (err, data) {
