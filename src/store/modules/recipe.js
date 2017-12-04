@@ -2,6 +2,7 @@ import axios from 'axios'
 import * as types from '../mutation-types'
 import AwsUtil from '../../utils/AwsUtil'
 import UserData from '../../utils/UserData'
+// import { config } from 'aws-sdk'
 
 const recipe = {
   namespaced: true,
@@ -49,7 +50,8 @@ const recipe = {
           console.log('Error:getRecipe')
           console.log(err)
         })
-      let API_URL = 'https://3nqaj8sj17.execute-api.ap-northeast-1.amazonaws.com/test/greet'
+      let objectKey = UserData.getObjectKey()
+      let API_URL = 'https://3nqaj8sj17.execute-api.ap-northeast-1.amazonaws.com/test/greet?objectKey=' + objectKey
       axios.defaults.headers.common['Authorization'] = jwtToken
       axios.get(API_URL)
       .then(res => {

@@ -1,6 +1,11 @@
 import { config, S3 } from 'aws-sdk'
 
 class UserData {
+  static getObjectKey () {
+    // return 'private/' + config.credentials.identityId + '/recipe.json'
+    return 'private/' + 'ap-northeast-1:d201d715-23bb-42f3-8051-6c00b76f8d04' + '/recipe.json'
+  }
+
   static getRecipe () {
     return new Promise((resolve, reject) => {
       var params = {
