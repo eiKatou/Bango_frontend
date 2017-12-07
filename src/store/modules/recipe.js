@@ -50,6 +50,8 @@ const recipe = {
           console.log('Error:getRecipe')
           console.log(err)
         })
+
+      // レシピデータの取得
       let objectKey = UserData.getObjectKey()
       let API_URL = 'https://3nqaj8sj17.execute-api.ap-northeast-1.amazonaws.com/test/greet?objectKey=' + objectKey
       axios.defaults.headers.common['Authorization'] = jwtToken

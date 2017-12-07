@@ -53,9 +53,10 @@ export default {
       for (let i = 0; i < this.searchResult.length; i++) {
         let recipe = this.searchResult[i]
         that.searchResult[i].thumbnailImage = undefined
-        UserData.getRecipeThumbnail(recipe.thumbnail)
+        UserData.getRecipeThumbnail(recipe.thumbnail, this.jwtToken)
           .then(function (data) {
-            that.searchResult[i].thumbnailImage = 'data:image/jpeg;base64,' + encode(data.Body)
+            that.searchResult[i].thumbnailImage = 'data:image/jpeg;base64,' + data
+            // encode(data.Body)
             that.$set(that.searchResult, i, that.searchResult[i])
           }).catch(function (err) {
             console.log(err)
@@ -87,13 +88,13 @@ export default {
   created () {
   }
 }
-function encode (data) {
-  var str = data.reduce(
-    function (a, b) {
-      return a + String.fromCharCode(b)
-    }, '')
-  return btoa(str).replace(/.{76}(?=.)/g, '$&\n')
-}
+// function encode (data) {
+//   var str = data.reduce(
+//     function (a, b) {
+//       return a + String.fromCharCode(b)
+//     }, '')
+//   return btoa(str).replace(/.{76}(?=.)/g, '$&\n')
+// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
